@@ -12,14 +12,32 @@ function App() {
     setInput(tBox.target.value);
   }
   const handleSubmit = () => {
-    setTasks([...tasks,input]);
-    setInput('');
+    if (input!==''){
+      if (input[0]==='!'){
+        setTasks([input,...tasks]);
+      }
+      else{
+        setTasks([...tasks,input]);
+      }
+      setInput('');      
+    }
+
   }
   return (
     <div className="App">
       <h1>Pekerjaan Rumah Yang Perlu Dilakukan</h1>
-      <input value={input} onChange = {handleChange} />
-      <button style={{marginLeft:'0.5%'}} onClick={handleSubmit}>Tambah</button>
+      <div>Jika ada pekerjaan yang urgent, tambahkan "!" di awal input.
+      </div>
+      <div style={{display:'flex',justifyContent:'center',marginBottom:'1%'}}>
+        <label for="inp" class="inp">
+          <input value={input} onChange = {handleChange} placeholder="&nbsp;"/>
+          <span class="label">Tambah Pekerjaan</span>
+          <span class="focus-bg"></span>
+        </label>        
+      </div>
+
+      
+      <button style={{marginLeft:'0.5%'}} className="tambah" onClick={handleSubmit}>Tambah</button>
       <TodoList tasks={tasks} onTasksChange={setTasks} />
     </div>
   );
