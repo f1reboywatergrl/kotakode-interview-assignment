@@ -29,10 +29,10 @@ function App() {
       <div>Jika ada pekerjaan yang urgent, tambahkan "!" di awal input.
       </div>
       <div style={{display:'flex',justifyContent:'center',marginBottom:'1%'}}>
-        <label for="inp" class="inp">
+        <label htmlFor="inp" className="inp">
           <input value={input} onChange = {handleChange} placeholder="&nbsp;"/>
-          <span class="label">Tambah Pekerjaan</span>
-          <span class="focus-bg"></span>
+          <span className="label">Tambah Pekerjaan</span>
+          <span className="focus-bg"></span>
         </label>        
       </div>
 

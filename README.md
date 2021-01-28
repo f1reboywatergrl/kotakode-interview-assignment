@@ -48,6 +48,10 @@ Main responsibilities done. Now lets spice the project up with some added featur
 5. Styled input textbox.
 6. Styled buttons.
 
+## What could be improved?
+
+The color palette I chose for my stylings were mostly inspired by Kotakode, and since I do not have a strong grasp on color palettes, I think this assignment's front-end color-wise can still be greatly improved. Also, I could've chosen a smoother algorithm for state handling since my current solution requires getting and setting hooks (states) through 2 different files. I also do not understand how I can get the ``.test.js`` file to work because of said hooks.
+
 ## Final remarks
 
 Overall the task was quite fun, I had no difficulty identifying the problem or finding ideas on how to make the page better, however I struggled a bit in implementing the ``delete`` function since it requires a hook that I was not familiar with. I'm also glad that I still got to learn something this time.
