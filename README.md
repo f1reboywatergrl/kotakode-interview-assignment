@@ -1,22 +1,53 @@
-# kotakode-interview-assignment
+# Project Documentation
 
-This project contains the source code to a simple mini-todo list that helps people keeps track of their "Pekerjaan Rumah Tangga". Some of the features are not yet fully functioning. 
+## First Glance: What's wrong?
 
-## 1. Your first task is to find what causes it not to work and fix them.
+1. Cannot enter anything in the text box.
+2. "Hapus" button does not work.
 
-Minimum working features required:
-1. ability to add pekerjaan.
-2. ability to view pekerjaan.
-3. ability to delete pekerjaan.
+## Problem-scanning: What causes these bugs?
 
-This project uses React. In order to run the application development server, please fork this github repository and pull the codebase to your machine. Then, go to the client folder by running the command `cd client`, and run `npm run start`.
+### For Problem 1,
 
-Tip: There is a React component called `TodoList` in `src/TodoList.jsx` which will receive some props from the root component `App` in `src/App.jsx`. Feel free to add ts many props as you like to make it work.
+1. No state handler for the text box. 
+2. No submit handler for the text box.
 
-## 2. After you are done with the basic implementation, write appropriate automated tests to make sure the app is running.
+### Solutions:
 
-Both `App.jsx` and `TodoList.jsx` have their corresponding test files called `App.test.jsx` and `TodoList.test.jsx`. In order to ensure your component (and therefore your application) works correctly, you should write test that covers enough cases to guarantee that users will not break the application.
+1. Added ``onChange`` handler on text box change and set its ``value`` to match the input state.
+2. Added ``handleSubmit`` function on button ``click``, first tested it by logging out the input. Works fine.
 
-## 3. Get creative! (The fun part)
+### Additional bugs:
 
-Feel free to use your imagination to implmeent cooler features! Maybe you can allow users to set a timer, or set the color of the todo list items to indicate priority, or moving todo list up and down - anything you like, impress us with your creativity!
+1. ``Tasks`` is a constant state, added ``setState`` function to make it dynamic.
+
+Now, the console is able to display the correct input. Lets optimize ``ToDoList`` to make it dynamic as well.
+
+1. Removed static jsx in ``TodoList.jsx`` and added parameters to make it dynamic. Default state "Cuci baju" and "Masak Nasi" 
+is now stated ONLY in ``App.js``.
+2. Made a function to iterate through the ``tasks`` parameter at ``App.js``, and converted each element to a list point.
+
+The ``tambah`` function now works perfectly, and all changes can be viewed at the homepage. Now lets move to Problem 2.
+
+### For Problem 2,
+
+1. No handler for ``hapus`` button at ``TodoList.jsx``. Added a handler to splice array on ``delete`` click, however there seems to be a flaw. Even though the array has been spliced, since it takes ``tasks`` from ``App.js`` as a parameter, it won't re-render correctly and since the state is not changed, nothing will happen.
+
+### Brute-force solution:
+
+Since I need to import the state from ``App.js``, I used the ``useCallback`` hook in ``TodoList.jsx`` and edited the state remotely from that file everytime the ``delete`` button is pressed. Front-end wise, it looks good enough as expected.
+
+Main responsibilities done. Now lets spice the project up with some added features and stylings.
+
+## Additional Features
+
+1. Added priority feature. Urgent tasks can be marked with "!" as its first character to indicate importance. Item will be pushed to the top of the list and will be distinguished by a red background.
+2. Added special styling if the task has the word "Kotakode" in it.
+3. Added fade-in animation on item add.
+4. Added gradient background inspired by Kotakode's color palette.
+5. Styled input textbox.
+6. Styled buttons.
+
+## Final remarks
+
+Overall the task was quite fun, I had no difficulty identifying the problem or finding ideas on how to make the page better, however I struggled a bit in implementing the ``delete`` function since it requires a hook that I was not familiar with. I'm also glad that I still got to learn something this time.
